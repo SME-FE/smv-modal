@@ -1,0 +1,273 @@
+<template lang='pug'>
+transition(name='smv-modal-fade')
+  .smv-modal(
+    :class='[className]'
+    tabindex='-1'
+    v-show='visible'
+    @keyup.enter='onEnter'
+    @keyup.esc='onEsc'
+    :style='style'
+  )
+    .smv-modal-mask(v-if='mask' @click='onClickMask' :style='maskStyle')
+    transition(:name='`smv-modal-${animations.type}`')
+      .smv-modal-container(:style='modalContainerStyl' v-show='visible')
+        .smv-header(v-show='title')
+          .title {{title}}
+          span.smv-modal-close(v-if='closeBtn' @click='onClose')
+        .smv-content
+          component(v-if='comp' :is='comp' ref='content')
+          .text(v-else)  {{content}}
+        .smv-footer
+          .btn.smv-modal-cancel(@click='onCancel') {{cancelText}}
+          .btn.smv-modal-confirm(@click='onModalSubmit') {{okText}}
+</template>
+<script>
+export default {
+  name: 'smv-modal',
+  props: {
+    theme: {
+      type: String,
+      default: '#8b80f9',
+    },
+    animations: {
+      type: Object,
+      default: () => ({
+        type: 'shutter',
+        duration: 300,
+      }),
+    },
+    content: [String, Object],
+    title: {
+      type: String,
+      default: '',
+    },
+    okText: {
+      type: String,
+      default: 'ok',
+    },
+    cancelText: {
+      type: String,
+      default: 'cancel',
+    },
+    className: {
+      type: String,
+      default: '',
+    },
+    comp: {
+      type: Function,
+      default: null,
+    },
+    closeBtn: {
+      type: Boolean,
+      default: true,
+    },
+    closeOnEsc: {
+      type: Boolean,
+      default: true,
+    },
+    confirmOnEnter: {
+      type: Boolean,
+      default: false,
+    },
+    maskClosable: {
+      type: Boolean,
+      default: true,
+    },
+    mask: {
+      type: Boolean,
+      default: true,
+    },
+    maskStyle: {
+      type: Object,
+      default: () => {},
+    },
+    modalStyle: {
+      type: Object,
+      default: () => ({
+        width: '360px',
+      }),
+    },
+  },
+  data() {
+    return {
+      visible: false,
+      $content: null,
+    };
+  },
+  mounted() {
+    if (this.$refs.content) {
+      this.$content = this.$refs.content;
+    }
+  },
+  watch: {
+    visible(newValue) {
+      if (newValue) {
+        this.$nextTick(() => this.$el.focus());
+      }
+    },
+  },
+  computed: {
+    style() {
+      return {
+        animationDuration: `${this.animations.duration}ms`,
+      };
+    },
+    modalContainerStyl() {
+      return Object.assign(
+        {
+          animationDuration: `${this.animations.duration}ms`,
+        },
+        this.modalStyle
+      );
+    },
+  },
+  methods: {
+    setVisible(value) {
+      this.visible = value;
+    },
+    onModalSubmit() {
+      let result;
+      if (this.$refs.content) {
+        result = this.$refs.content.form;
+      }
+      this.$emit('submitModal', {
+        type: 'submit',
+        form: result,
+      });
+      this.visible = false;
+    },
+    onEnter() {
+      if (this.confirmOnEnter) this.onModalSubmit();
+    },
+    onCancel() {
+      if (this.visible) {
+        this.$emit('hideModal', {
+          type: 'hide',
+          trigger: 'cancel',
+        });
+        this.visible = false;
+      }
+    },
+    onClose() {
+      if (this.visible) {
+        this.$emit('hideModal', {
+          type: 'hide',
+          trigger: 'close',
+        });
+        this.visible = false;
+      }
+    },
+    onEsc() {
+      if (this.visible && this.closeOnEsc) {
+        this.$emit('hideModal', {
+          type: 'hide',
+          trigger: 'esc',
+        });
+        this.visible = false;
+      }
+    },
+    onClickMask() {
+      if (this.maskClosable) {
+        this.$emit('hideModal', {
+          type: 'hide',
+          trigger: 'mask',
+        });
+        this.visible = false;
+      }
+    },
+  },
+};
+</script>
+<style lang="scss">
+@import './../style/_config.scss';
+@import './../style/_mixins.scss';
+@import './../style/_modal-anim.scss';
+
+$darkPrimary: darken($primary-color, 5%);
+
+.smv-modal,
+.smv-modal-mask {
+  top: 0;
+  left: 0;
+  z-index: $maskIdx;
+  @include square(100%);
+}
+.smv-modal {
+  position: fixed;
+  font-size: 14px;
+  color: #606266;
+  line-height: 1.5;
+  font-family: $font-family;
+}
+.smv-modal-mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.smv-header {
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #303133;
+}
+
+.smv-content {
+  padding-bottom: 16px;
+}
+
+.smv-modal-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  margin: auto;
+  z-index: $modalIdx;
+  padding: 16px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.smv-footer {
+  text-align: right;
+  .btn {
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all ease 0.4s;
+  }
+  .smv-modal-confirm {
+    color: white;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+    &:hover {
+      border: 1px solid $darkPrimary;
+      background: $darkPrimary;
+    }
+  }
+  .smv-modal-cancel {
+    background: white;
+    border: 1px solid $primary-color;
+    margin-right: 16px;
+    color: $primary-color;
+    &:hover {
+      background: darken(white, 2%);
+    }
+  }
+}
+
+@include makeCloseIcon(smv-modal-close, 16px, #999, $darkPrimary);
+/* 覆盖 close icon 位置 */
+.smv-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+/* only implement fade and shutter by default */
+@include vmakeFade();
+@include vmakeShutter();
+</style>

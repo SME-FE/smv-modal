@@ -1,0 +1,85 @@
+// SME-FE SCSS MIXINS
+
+@mixin transition($desc) {
+  -webkit-transition: $desc;
+  transition: $desc;
+}
+
+@mixin transform($desc) {
+  -webkit-transform: $desc;
+  transform: $desc;
+}
+
+@mixin animation($desc) {
+  -webkit-animation: $desc;
+  animation: $desc;
+}
+
+@mixin keyframe($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin square($value) {
+  width: $value;
+  height: $value;
+}
+
+@mixin fullAbsolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin makeCloseIcon($className, $size, $mainColor, $hoverColor) {
+  .#{$className} {
+    position: relative;
+    cursor: pointer;
+    width: $size;
+    height: $size;
+    z-index: 9999;
+    display: inline-block;
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      height: 2px;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      margin-top: -1px;
+      background: $mainColor;
+      border-radius: 100%;
+      @include transition(background 0.2s);
+    }
+    &:hover {
+      &:before,
+      &:after {
+        background: $hoverColor;
+      }
+    }
+    &:before {
+      @include transform(rotate(45deg));
+    }
+    &:after {
+      @include transform(rotate(-45deg));
+    }
+  }
+}
+
+@mixin makeVueAnim($className, $type, $desc) {
+  $frameName: #{$className}-#{$type};
+  @include keyframe($frameName) {
+    @content;
+  }
+
+  .#{$className}-#{$type}-active {
+    @include animation($frameName $desc);
+  }
+}

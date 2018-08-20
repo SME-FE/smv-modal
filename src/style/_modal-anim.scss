@@ -1,0 +1,69 @@
+@import './_mixins.scss';
+
+@mixin vmakeFade {
+  @include makeVueAnim(smv-modal-fade, enter, both ease-in) {
+    from {
+      opacity: 0;
+    }
+  }
+  @include makeVueAnim(smv-modal-fade, leave, both ease-out) {
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+@mixin vmakeZoom {
+  $enterDesc: both cubic-bezier(0.4, 0, 0, 1.5);
+  @include makeVueAnim(smv-modal-zoom, enter, $enterDesc) {
+    from {
+      @include transform(scale3d(0.3, 0.3, 0.3));
+    }
+  }
+  @include makeVueAnim(smv-modal-zoom, leave, both) {
+    to {
+      @include transform(scale3d(0.3, 0.3, 0.3));
+    }
+  }
+}
+
+@mixin vmakeShutter {
+  $enterDesc: both cubic-bezier(0.4, 0, 0, 1.5);
+  @include makeVueAnim(smv-modal-shutter, enter, $enterDesc) {
+    from {
+      @include transform(scale3d(0, 1, 1));
+    }
+  }
+  @include makeVueAnim(smv-modal-shutter, leave, both) {
+    60% {
+      @include transform(scale3d(0.01, 1, 1));
+    }
+    to {
+      @include transform(scale3d(0, 1, 0.1));
+    }
+  }
+}
+
+/* make slide [up, down, left, right] animation */
+@mixin vmakeSlide {
+  $slideMap: (
+    slideup: translate3d(0, 100px, 0),
+    slidedown: translate3d(0, -100px, 0),
+    slideleft: translate3d(-150px, 0, 0),
+    slideright: translate3d(150px, 0, 0),
+  );
+
+  $enterDesc: both cubic-bezier(0.4, 0, 0, 1.5);
+  @each $key, $val in $slideMap {
+    @include makeVueAnim(smv-modal-#{$key}, enter, $enterDesc) {
+      from {
+        @include transform($val);
+      }
+    }
+    @include makeVueAnim(smv-modal-#{$key}, leave, both) {
+      to {
+        @include transform($val);
+      }
+    }
+  }
+}

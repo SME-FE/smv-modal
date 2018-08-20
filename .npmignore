@@ -1,0 +1,12 @@
+.idea
+.vscode
+.DS_STORE
+.gitignore
+.prettierrc
+yarn.lock
+example-dist
+example
+build
+docs
+note
+coverage
