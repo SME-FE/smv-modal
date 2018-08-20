@@ -179,9 +179,9 @@ export default {
 };
 </script>
 <style lang="scss">
-@import './../style/_config.scss';
-@import './../style/_mixins.scss';
-@import './../style/_modal-anim.scss';
+@import './../styles/_config.scss';
+@import './../styles/_mixins.scss';
+@import './../styles/_modal-anim.scss';
 
 $darkPrimary: darken($primary-color, 5%);
 
@@ -267,7 +267,7 @@ $darkPrimary: darken($primary-color, 5%);
   right: 16px;
 }
 
-/* only implement fade and shutter by default */
+// /* only implement fade and shutter by default */
 @include vmakeFade();
 @include vmakeShutter();
 </style>

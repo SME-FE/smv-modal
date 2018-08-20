@@ -9,7 +9,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './'),
-    filename: '../index.js',
+    filename: '../dist/index.js',
     library: 'Modal',
     libraryTarget: 'umd',
   },

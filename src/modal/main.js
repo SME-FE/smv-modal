@@ -5,6 +5,7 @@ const Modal = opts => {
   const ModalConstructor = CompFactory(Main);
   let instance = null;
   const propsData = Object.assign({ content: '' }, opts);
+  // const propsData = opts;
 
   switch (getContentType(opts.content)) {
     case 'sfc':

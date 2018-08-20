@@ -45,24 +45,26 @@
 }
 
 /* make slide [up, down, left, right] animation */
-@mixin vmakeSlide {
+@mixin vmakeSlide($type) {
   $slideMap: (
-    slideup: translate3d(0, 100px, 0),
-    slidedown: translate3d(0, -100px, 0),
-    slideleft: translate3d(-150px, 0, 0),
-    slideright: translate3d(150px, 0, 0),
+    slideUp: translate3d(0, 100px, 0),
+    slideDown: translate3d(0, -100px, 0),
+    slideLeft: translate3d(-150px, 0, 0),
+    slideRight: translate3d(150px, 0, 0),
   );
 
   $enterDesc: both cubic-bezier(0.4, 0, 0, 1.5);
   @each $key, $val in $slideMap {
-    @include makeVueAnim(smv-modal-#{$key}, enter, $enterDesc) {
-      from {
-        @include transform($val);
+    @if $type == $key {
+      @include makeVueAnim(smv-modal-#{$key}, enter, $enterDesc) {
+        from {
+          @include transform($val);
+        }
       }
-    }
-    @include makeVueAnim(smv-modal-#{$key}, leave, both) {
-      to {
-        @include transform($val);
+      @include makeVueAnim(smv-modal-#{$key}, leave, both) {
+        to {
+          @include transform($val);
+        }
       }
     }
   }
