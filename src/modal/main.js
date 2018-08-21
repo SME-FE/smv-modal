@@ -4,6 +4,7 @@ import { CompFactory, VnodeFactory, getContentType, isSSR } from '../utils';
 const Modal = opts => {
   const ModalConstructor = CompFactory(Main);
   let instance = null;
+  if (opts.animation && !opts.animation.duration) opts.animation.duration = 300;
   const propsData = Object.assign({ content: '' }, opts);
   // const propsData = opts;
 

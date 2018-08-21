@@ -8,6 +8,9 @@ import ModalContent from './ModalContent.vue';
 import Vue from 'vue';
 import Modal from '@/index.js';
 
+const lightblue = '#9cd3d3';
+const test = '#a3a7e4';
+
 export default {
   data() {
     return {
@@ -25,8 +28,25 @@ export default {
   },
   created() {
     this.modal = Modal({
+      theme: test,
       title: '这是标题',
+      animation: {
+        type: 'shutter',
+      },
+      confirmText: '确认',
+      cancelText: '取消',
+      className: 'hallo-world',
       confirmOnEnter: true,
+      closeBtn: true,
+      maskClosable: false,
+      mask: true,
+      maskStyle: {
+        // background: '',
+      },
+      modalStyle: {
+        width: '400px',
+        height: '240px',
+      },
       // content: <div style="color: red;">ooooddd man</div>,
       // content: '这是modal的内容，内容内容。这是modal的内容，内容内容。这是modal的内容，内容内容。',
       content: ModalContent,

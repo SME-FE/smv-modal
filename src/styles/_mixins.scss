@@ -61,7 +61,7 @@
     &:hover {
       &:before,
       &:after {
-        background: $hoverColor;
+        background: darken($mainColor, 10%);
       }
     }
     &:before {

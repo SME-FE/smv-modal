@@ -9,7 +9,7 @@ transition(name='smv-modal-fade')
     :style='style'
   )
     .smv-modal-mask(v-if='mask' @click='onClickMask' :style='maskStyle')
-    transition(:name='`smv-modal-${animations.type}`')
+    transition(:name='`smv-modal-${animation.type}`')
       .smv-modal-container(:style='modalContainerStyl' v-show='visible')
         .smv-header(v-show='title')
           .title {{title}}
@@ -18,8 +18,8 @@ transition(name='smv-modal-fade')
           component(v-if='comp' :is='comp' ref='content')
           .text(v-else)  {{content}}
         .smv-footer
-          .btn.smv-modal-cancel(@click='onCancel') {{cancelText}}
-          .btn.smv-modal-confirm(@click='onModalSubmit') {{okText}}
+          .btn.smv-modal-cancel(@click='onCancel' :style='cancelStyl') {{cancelText}}
+          .btn.smv-modal-confirm(@click='onModalSubmit' :style='confirmStyl') {{confirmText}}
 </template>
 <script>
 export default {
@@ -29,7 +29,7 @@ export default {
       type: String,
       default: '#8b80f9',
     },
-    animations: {
+    animation: {
       type: Object,
       default: () => ({
         type: 'shutter',
@@ -41,9 +41,9 @@ export default {
       type: String,
       default: '',
     },
-    okText: {
+    confirmText: {
       type: String,
-      default: 'ok',
+      default: 'confirm',
     },
     cancelText: {
       type: String,
@@ -107,15 +107,27 @@ export default {
     },
   },
   computed: {
+    confirmStyl() {
+      return {
+        background: `${this.theme}`,
+        border: `1px solid ${this.theme}`,
+      };
+    },
+    cancelStyl() {
+      return {
+        color: `${this.theme}`,
+        border: `1px solid ${this.theme}`,
+      };
+    },
     style() {
       return {
-        animationDuration: `${this.animations.duration}ms`,
+        animationDuration: `${this.animation.duration}ms`,
       };
     },
     modalContainerStyl() {
       return Object.assign(
         {
-          animationDuration: `${this.animations.duration}ms`,
+          animationDuration: `${this.animation.duration}ms`,
         },
         this.modalStyle
       );
@@ -230,6 +242,9 @@ $darkPrimary: darken($primary-color, 5%);
 
 .smv-footer {
   text-align: right;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
   .btn {
     display: inline-block;
     border-radius: 4px;
@@ -241,21 +256,17 @@ $darkPrimary: darken($primary-color, 5%);
   }
   .smv-modal-confirm {
     color: white;
-    background: $primary-color;
-    border: 1px solid $primary-color;
-    &:hover {
-      border: 1px solid $darkPrimary;
-      background: $darkPrimary;
-    }
+    // &:hover {
+    //   border: 1px solid $darkPrimary;
+    //   background: $darkPrimary;
+    // }
   }
   .smv-modal-cancel {
     background: white;
-    border: 1px solid $primary-color;
     margin-right: 16px;
-    color: $primary-color;
-    &:hover {
-      background: darken(white, 2%);
-    }
+    // &:hover {
+    //   background: darken(white, 2%);
+    // }
   }
 }
 

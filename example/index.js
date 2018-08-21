@@ -3,6 +3,11 @@ import VueRouter from 'vue-router';
 import logSome from 'sme-log';
 
 import Modal from '@/index';
+import '@/styles/zoom.scss';
+import '@/styles/slideDown.scss';
+import '@/styles/slideUp.scss';
+import '@/styles/slideLeft.scss';
+import '@/styles/slideRight.scss';
 // import Modal from '../index';
 import App from './components/App.vue';
 import routes from './routes';
