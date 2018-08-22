@@ -1,5 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const md = require('markdown-it')();
+const markdownitfence = require('markdown-it-fence');
+
+function fencePlugin(md, options) {
+  return markdownitfence(md, 'imark', {
+    render: (tokens, idx) => {
+      const marker = tokens[idx].info;
+      const reg = new RegExp(`:::${marker}((.|\n)*):::`);
+      const rendered = md.render('```js\n' + tokens[idx].content + '\n```');
+      return rendered.replace(reg, `<div class="await-point">$1</div>`);
+    },
+  });
+}
 
 module.exports = {
   devtool: 'source-map',
@@ -40,6 +53,18 @@ module.exports = {
         test: /\.vue$/,
         use: ['vue-loader'],
         exclude: [/_cache/],
+      },
+      {
+        test: /\.md$/,
+        loader: 'vue-markdown-loader',
+        options: {
+          html: true,
+          use: [
+            [fencePlugin],
+            [require('markdown-it-container'), 'tip'],
+            [require('markdown-it-container'), 'warning'],
+          ],
+        },
       },
     ],
   },

@@ -6,7 +6,6 @@ const Modal = opts => {
   let instance = null;
   if (opts.animation && !opts.animation.duration) opts.animation.duration = 300;
   const propsData = Object.assign({ content: '' }, opts);
-  // const propsData = opts;
 
   switch (getContentType(opts.content)) {
     case 'sfc':

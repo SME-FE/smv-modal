@@ -9,7 +9,7 @@ import '@/styles/slideUp.scss';
 import '@/styles/slideLeft.scss';
 import '@/styles/slideRight.scss';
 // import Modal from '../index';
-import App from './components/App.vue';
+import App from './App.vue';
 import routes from './routes';
 
 import './normalize.css';
