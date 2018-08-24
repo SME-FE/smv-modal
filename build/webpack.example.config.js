@@ -79,6 +79,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src'),
+      example: path.resolve(__dirname, '../example'),
       root: path.resolve(__dirname, '../'),
     },
   },
