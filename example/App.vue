@@ -15,8 +15,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss'>
+@import './styles/_config.scss';
+
+* {
+  box-sizing: border-box;
+}
 body {
   background: white;
+  color: $font-color;
+  font-family: $font-family;
 }
 </style>

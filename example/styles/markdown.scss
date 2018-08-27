@@ -1,0 +1,10 @@
+@import './_config.scss';
+
+pre {
+  &[class*='language-'] {
+    background: #9cd3d3;
+    border-radius: 0;
+    overflow: inherit;
+    // border-left: 4px solid $purple;
+  }
+}

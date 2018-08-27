@@ -14,6 +14,7 @@ import '@/styles/slideRight.scss';
 import App from './App.vue';
 import routes from './routes';
 import './normalize.css';
+import './styles/markdown.scss';
 
 window.ilog = logSome(process.env.NODE_ENV);
 Vue.use(VueRouter);

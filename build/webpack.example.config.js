@@ -9,7 +9,14 @@ function fencePlugin(md, options) {
       const marker = tokens[idx].info;
       const reg = new RegExp(`:::${marker}((.|\n)*):::`);
       const rendered = md.render('```js\n' + tokens[idx].content + '\n```');
-      return rendered.replace(reg, `<div class="await-point">$1</div>`);
+      /**
+       * 虽然这里是已经替换成功了，但是 markdown-it code block 的解析是在加载完 dom 后
+       * 用 js 来解析，，，估计是用类似 highlightjs 之类的库
+       * 十分睿智，所以就只能在 view 层做处理了
+       * 所以，，，之前用 markdown-it-container 不行，应该是同一个原因
+       */
+      // console.log(rendered.replace(reg, `<div class="await-point">$1</div>`));
+      return rendered;
     },
   });
 }
@@ -60,7 +67,7 @@ module.exports = {
         options: {
           html: true,
           use: [
-            [fencePlugin],
+            // [fencePlugin],
             [require('markdown-it-container'), 'tip'],
             [require('markdown-it-container'), 'warning'],
           ],
