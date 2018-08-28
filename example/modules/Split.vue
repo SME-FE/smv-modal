@@ -39,7 +39,7 @@ export default {
       maskClosable: false,
       mask: true,
       maskStyle: {
-        // background: '',
+        // width: '65%',
       },
       modalStyle: {
         width: '400px',
@@ -51,13 +51,22 @@ export default {
     });
   },
   methods: {
-    showModal() {
-      this.modal.show();
+    async showModal() {
+      const wp = document.querySelector('.await-point');
+      wp.className += ' active';
+      try {
+        const resp = await this.modal.show();
+        ilog.info('resolve', resp);
+      } catch (err) {
+        ilog.warn('reject', err);
+      }
+      wp.className = wp.className.replace('active', '');
     },
   },
 };
 </script>
 <style lang="scss">
+@import './../styles/_config.scss';
 .btn {
   padding: 5px 16px;
   background: white;
@@ -67,7 +76,11 @@ export default {
 }
 .split-page {
   height: 100vh;
-  background: yellowgreen;
+  background: white;
+  overflow: hidden;
+}
+.smv-modal.hallo-world {
+  width: 60%;
 }
 </style>
 

@@ -28,6 +28,5 @@ export function parseMarkdown() {
   const replaced = String(codeBlock.innerHTML)
     .replace(placeholderReg, ':')
     .replace(reg, `<div class="await-point">$1</div>`);
-  ilog.info('replaced', replaced);
   codeBlock.innerHTML = replaced;
 }

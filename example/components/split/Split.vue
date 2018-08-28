@@ -34,11 +34,11 @@ export default {
   height: 100%;
   .split-left {
     @extend %common;
-    width: 65%;
+    width: 60%;
   }
   .split-right {
     @extend %common;
-    width: 35%;
+    width: 40%;
     background: $gray;
     border-left: 4px solid $purple;
   }
@@ -46,19 +46,24 @@ export default {
     position: relative;
     line-height: 0.5;
     padding-bottom: 6px;
-    background: $yellow;
+
+    width: 100%;
+    background: transparent;
+    transition: all 1s ease;
     &::before,
     &::after {
       content: '';
       display: inline-block;
       position: absolute;
       background-color: $yellow;
-      width: 40px;
+      width: 30px;
       height: 100%;
+      opacity: 0;
+      transition: all 1s ease;
     }
     &::before {
       left: 0;
-      margin-left: -40px;
+      margin-left: -30px;
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
     }
@@ -69,6 +74,13 @@ export default {
       color: white;
       padding-top: 6px;
       background: transparent;
+    }
+    &.active {
+      background: $yellow;
+      &::before,
+      &::after {
+        opacity: 1;
+      }
     }
   }
 }

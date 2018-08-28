@@ -37,8 +37,35 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    browsers: ['last 2 versions'],
+                  },
+                },
+              ],
+            ],
+            // write in webpack file for only using transform-runtime for example code
+            plugins: [
+              // [
+              //   '@babel/plugin-transform-runtime',
+              //   {
+              //     corejs: false,
+              //     helpers: true,
+              //     regenerator: true,
+              //     useESModules: false,
+              //   },
+              // ],
+              'transform-vue-jsx',
+            ],
+          },
+        },
       },
       {
         test: /\.scss$/,

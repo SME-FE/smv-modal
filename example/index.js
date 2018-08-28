@@ -1,3 +1,5 @@
+// for detail: https://github.com/babel/babel/issues/5085#issuecomment-277544677
+import 'babel-polyfill';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import logSome from 'sme-log';
