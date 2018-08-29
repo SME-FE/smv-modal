@@ -10,3 +10,20 @@ pre {
     // border-left: 4px solid $purple;
   }
 }
+
+section {
+  h4 {
+    text-align: left;
+    position: relative;
+    margin: 5px 0;
+    margin-left: 16px;
+    &::before {
+      content: '#';
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      margin-left: -16px;
+      color: $purple;
+    }
+  }
+}

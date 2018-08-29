@@ -6,17 +6,11 @@
     slot(name='right')
 </template>
 <script>
-import { parseMarkdown } from 'example/utils';
-
 export default {
   data() {
     return {};
   },
-  mounted() {
-    setTimeout(() => {
-      parseMarkdown();
-    });
-  },
+  mounted() {},
   methods: {},
 };
 </script>
@@ -34,18 +28,26 @@ export default {
   height: 100%;
   .split-left {
     @extend %common;
+    position: relative;
     width: 60%;
+    .content {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      right: 0;
+    }
   }
   .split-right {
     @extend %common;
     width: 40%;
+    vertical-align: top;
     background: $gray;
     border-left: 4px solid $purple;
   }
   .await-point {
     position: relative;
     line-height: 0.5;
-    padding-bottom: 6px;
+    // padding-bottom: 6px;
 
     width: 100%;
     background: transparent;

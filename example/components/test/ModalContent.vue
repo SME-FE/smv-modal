@@ -1,44 +1,10 @@
-<template lang="pug">
-.testt
-  input(v-model='form.age' placeholder='age')
-  input(v-model='form.count' placeholder='count')
-  input(v-model='form.color' placeholder='color')
+<template>
+<h2 class="modal-content" :style="styl">hallo {{name}}</h2>
 </template>
-
 <script>
-import Vue from 'vue';
 export default {
-  name: 'testt',
   data() {
-    return {
-      name: 'world',
-      form: {
-        age: '',
-        count: '',
-        color: '',
-      },
-    };
+    return { name: 'world', styl: { color: 'yellowgreen' } };
   },
-  created() {
-    this.name += '~~';
-  },
-  methods: {
-    resetTest() {
-      ilog('reset.....');
-      Object.assign(this.form, {
-        age: '',
-        count: '',
-        color: '',
-      });
-    },
-  },
-  computed: {},
 };
 </script>
-<style lang="scss">
-.testt {
-  // background: url('./../assets/xuxin.jpg');
-  color: yellowgreen;
-}
-</style>
-

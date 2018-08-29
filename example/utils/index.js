@@ -24,9 +24,22 @@ export function debounce(fn, delay) {
 export function parseMarkdown() {
   const placeholderReg = /<span class="token punctuation">:<\/span>/gi;
   const reg = new RegExp(`:::imark((.|\n)*):::`);
-  let codeBlock = document.querySelector('.language-js');
-  const replaced = String(codeBlock.innerHTML)
-    .replace(placeholderReg, ':')
-    .replace(reg, `<div class="await-point">$1</div>`);
-  codeBlock.innerHTML = replaced;
+  let codeBlocks = document.querySelectorAll('pre.language-js');
+  let count = 1;
+  for (let i = 0; i < codeBlocks.length; i++) {
+    const codeBlock = codeBlocks[i];
+    const replaced = String(codeBlock.innerHTML)
+      .replace(placeholderReg, ':')
+      .replace(reg, `<div class="await-point code-${count++}">$1</div>`);
+    // ilog.info('replaced', replaced);
+    codeBlock.innerHTML = replaced;
+  }
+}
+
+export function waitPointActive(isActive, className) {
+  const wp = document.querySelector(`.${className}`);
+  if (isActive) wp.className += ' active';
+  else {
+    wp.className = wp.className.replace('active', '');
+  }
 }

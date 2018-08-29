@@ -13,9 +13,11 @@
 <script>
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
-import SFC from '../md/sfc.md';
+import ModalContent from 'example/components/test/ModalContent.vue';
+import SFC from 'example/md/sfc.md';
+import { waitPointActive } from 'example/utils';
 
-const test = '#a3a7e4';
+const theme = '#a3a7e4';
 
 export default {
   components: {
@@ -29,47 +31,32 @@ export default {
   },
   created() {
     this.modal = Modal({
-      theme: test,
+      theme,
       title: '这是标题',
-      animation: {
-        type: 'shutter',
-      },
-      confirmText: '确认',
-      cancelText: '取消',
       className: 'hallo-world',
-      confirmOnEnter: true,
-      closeBtn: true,
-      maskClosable: false,
-      mask: true,
-      maskStyle: {
-        // width: '65%',
-      },
       modalStyle: {
         width: '400px',
         height: '240px',
       },
-      // content: <div style="color: red;">ooooddd man</div>,
-      content: '这是modal的内容，内容内容。这是modal的内容，内容内容。这是modal的内容，内容内容。',
-      // content: ModalContent,
+      content: ModalContent,
     });
   },
   methods: {
     async showModal() {
-      const wp = document.querySelector('.await-point');
-      wp.className += ' active';
+      waitPointActive(true, 'code-1');
       try {
         const resp = await this.modal.show();
         ilog.info('resolve', resp);
       } catch (err) {
         ilog.warn('reject', err);
       }
-      wp.className = wp.className.replace('active', '');
+      waitPointActive(false, 'code-1');
     },
   },
 };
 </script>
 <style lang="scss">
-@import './../styles/_config.scss';
+@import './../../styles/_config.scss';
 .btn {
   padding: 5px 16px;
   background: white;
