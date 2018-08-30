@@ -15,7 +15,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import './../../styles/_config.scss';
+@import './../../styles/config.scss';
 
 %common {
   text-align: center;

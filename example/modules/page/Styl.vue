@@ -61,7 +61,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import './../../styles/_config.scss';
+@import './../../styles/config.scss';
 .btn {
   padding: 5px 16px;
   background: white;

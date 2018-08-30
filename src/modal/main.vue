@@ -191,9 +191,9 @@ export default {
 };
 </script>
 <style lang="scss">
-@import './../styles/_config.scss';
-@import './../styles/_mixins.scss';
-@import './../styles/_modal-anim.scss';
+@import './../styles/config.scss';
+@import './../styles/mixins.scss';
+@import './../styles/modal-anim.scss';
 
 $darkPrimary: darken($primary-color, 5%);
 
