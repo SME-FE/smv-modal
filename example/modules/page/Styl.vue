@@ -17,6 +17,8 @@ import Styl from 'example/md/styl.md';
 import { waitPointActive } from 'example/utils';
 
 const theme = '#a3a7e4';
+// for github page
+const rootPath = process.env.NODE_ENV === 'gh' ? 'smv-modal/' : '';
 
 export default {
   components: {
@@ -36,7 +38,7 @@ export default {
       modalStyle: {
         width: '400px',
         height: '240px',
-        background: '#fff url(/background.jpg) no-repeat 5% -100%',
+        background: `#fff url(/${rootPath}background.jpg) no-repeat 5% -100%`,
       },
       // prettier-ignore
       content: (
