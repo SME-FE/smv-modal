@@ -5,51 +5,62 @@
       .content
         h1 smv modal
         p use modal without tear 😂
-        .btn(@click='showModal') click
+        .btn-box
+          .btn(@click='() => showModal("shutter")') shutter(default)
+          .btn(@click='() => showModal("zoom")') zoom
+          .btn(@click='() => showModal("slideUp")') slideUp
+          .btn(@click='() => showModal("slideDown")') slideDown
+          .btn(@click='() => showModal("slideLeft")') slideLeft
+          .btn(@click='() => showModal("slideRight")') slideRight
     template(slot='right')
-      SFC
+      Anim
 </template>
 
 <script>
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
-import ModalContent from 'example/components/test/ModalContent.vue';
-import SFC from 'example/md/sfc.md';
+import Anim from 'example/md/animation.md';
 import { waitPointActive } from 'example/utils';
 
 const theme = '#a3a7e4';
+async function genModal(animationType, context) {
+  const h = context.$createElement;
+  const modal = Modal({
+    theme,
+    title: 'Animation',
+    animation: {
+      type: animationType,
+      duratino: 300,
+    },
+    className: 'hallo-world',
+    content: <h2 class="modal-content">{animationType} example</h2>,
+  });
+
+  try {
+    const resp = await modal.show();
+    ilog.info('resolve', resp);
+  } catch (err) {
+    ilog.warn('reject', err);
+  }
+
+  modal.destroy();
+}
 
 export default {
   components: {
     Split,
-    SFC,
+    Anim,
   },
   data() {
     return {
       modal: null,
     };
   },
-  created() {
-    this.modal = Modal({
-      theme,
-      title: '这是标题',
-      className: 'hallo-world',
-      modalStyle: {
-        width: '400px',
-        height: '240px',
-      },
-      content: ModalContent,
-    });
-  },
+  created() {},
   methods: {
-    async showModal() {
+    async showModal(type) {
       waitPointActive(true, 'code-3');
-      try {
-        const resp = await this.modal.show();
-        ilog.info('resolve', resp);
-      } catch (err) {
-        ilog.warn('reject', err);
-      }
+      await genModal(type, this);
       waitPointActive(false, 'code-3');
     },
   },
@@ -65,6 +76,11 @@ export default {
   display: inline-block;
   cursor: pointer;
 }
+.btn-box {
+  .btn {
+    margin: 0 5px;
+  }
+}
 .split-page {
   height: 100vh;
   background: white;
@@ -74,4 +90,3 @@ export default {
   width: 60%;
 }
 </style>
-

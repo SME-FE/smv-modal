@@ -43,9 +43,12 @@ const Modal = opts => {
     instance.setVisible(false);
   };
   instance.destroy = () => {
-    if (instance.$content) instance.$content.$destroy();
-    instance.$destroy();
-    document.body.removeChild(instance.$el);
+    console.log('duration', instance.animation.duration);
+    setTimeout(() => {
+      if (instance.$content) instance.$content.$destroy();
+      instance.$destroy();
+      document.body.removeChild(instance.$el);
+    }, instance.animation.duration);
   };
 
   document.body.appendChild(instance.$el);

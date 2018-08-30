@@ -7,7 +7,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = merge(example, {
   devtool: 'none',
   output: {
-    publicPath: '/sc-modal/',
+    publicPath: '/smv-modal/',
   },
   module: {
     rules: [

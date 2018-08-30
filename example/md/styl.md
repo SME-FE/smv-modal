@@ -4,13 +4,20 @@
 methods: {
   async showModal(animationType) {
     const modal = Modal({
-      title: 'Animation',
-      animation: {
-        type: animationType,
-        duratino: 300
-      },
+      theme,
+      title: 'Custom Style',
       className: 'hallo-world',
-      content: <h2 class="modal-content">{animationType} example</h2>,
+      modalStyle: {
+        width: '400px',
+        height: '240px',
+        background: '#fff url(/background.jpg) no-repeat 5% -100%',
+      },
+      // prettier-ignore
+      content: (
+        <h3 style={{ marginLeft: '50%', color: theme }}>
+          ~~ sakura ~~
+        </h3>
+      )
     });
 
     try {

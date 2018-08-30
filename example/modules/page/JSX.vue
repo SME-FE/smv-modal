@@ -7,14 +7,13 @@
         p use modal without tear 😂
         .btn(@click='showModal') click
     template(slot='right')
-      SFC
+      JSX
 </template>
 
 <script>
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
-import ModalContent from 'example/components/test/ModalContent.vue';
-import SFC from 'example/md/sfc.md';
+import JSX from 'example/md/jsx.md';
 import { waitPointActive } from 'example/utils';
 
 const theme = '#a3a7e4';
@@ -22,7 +21,7 @@ const theme = '#a3a7e4';
 export default {
   components: {
     Split,
-    SFC,
+    JSX,
   },
   data() {
     return {
@@ -32,13 +31,13 @@ export default {
   created() {
     this.modal = Modal({
       theme,
-      title: '这是标题',
+      title: 'JSX',
       className: 'hallo-world',
       modalStyle: {
         width: '400px',
         height: '240px',
       },
-      content: ModalContent,
+      content: <h2 class="modal-content">let's try jsx.</h2>,
     });
   },
   methods: {
@@ -74,4 +73,3 @@ export default {
   width: 60%;
 }
 </style>
-

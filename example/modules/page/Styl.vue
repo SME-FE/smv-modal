@@ -7,14 +7,13 @@
         p use modal without tear 😂
         .btn(@click='showModal') click
     template(slot='right')
-      SFC
+      Styl
 </template>
 
 <script>
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
-import ModalContent from 'example/components/test/ModalContent.vue';
-import SFC from 'example/md/sfc.md';
+import Styl from 'example/md/styl.md';
 import { waitPointActive } from 'example/utils';
 
 const theme = '#a3a7e4';
@@ -22,7 +21,7 @@ const theme = '#a3a7e4';
 export default {
   components: {
     Split,
-    SFC,
+    Styl,
   },
   data() {
     return {
@@ -32,25 +31,31 @@ export default {
   created() {
     this.modal = Modal({
       theme,
-      title: 'SFC',
+      title: 'Custom Style',
       className: 'hallo-world',
       modalStyle: {
         width: '400px',
         height: '240px',
+        background: '#fff url(/background.jpg) no-repeat 5% -100%',
       },
-      content: ModalContent,
+      // prettier-ignore
+      content: (
+        <h3 style={{ marginLeft: '50%', color: theme }}>
+          ~~ sakura ~~
+        </h3>
+      )
     });
   },
   methods: {
     async showModal() {
-      waitPointActive(true, 'code-1');
+      waitPointActive(true, 'code-4');
       try {
         const resp = await this.modal.show();
         ilog.info('resolve', resp);
       } catch (err) {
         ilog.warn('reject', err);
       }
-      waitPointActive(false, 'code-1');
+      waitPointActive(false, 'code-4');
     },
   },
 };
@@ -74,4 +79,3 @@ export default {
   width: 60%;
 }
 </style>
-

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const md = require('markdown-it')();
 const markdownitfence = require('markdown-it-fence');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function fencePlugin(md, options) {
   return markdownitfence(md, 'imark', {
@@ -109,6 +110,13 @@ module.exports = {
       template: path.resolve(__dirname, '../example/index.html'),
       chunks: ['libs', 'main'],
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../example/static'),
+        to: path.join(__dirname, '../example-dist/[name].[ext]'),
+        toType: 'template',
+      },
+    ]),
   ],
   resolve: {
     alias: {

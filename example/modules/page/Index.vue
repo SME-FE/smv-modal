@@ -7,6 +7,8 @@
       JSX
     Page
       Anim
+    Page
+      Styl
 </template>
 
 <script>
@@ -15,6 +17,7 @@ import Page from 'example/components/scroll-page/Page.vue';
 import SFC from './SFC.vue';
 import JSX from './JSX.vue';
 import Anim from './Anim.vue';
+import Styl from './Styl.vue';
 
 import { parseMarkdown } from 'example/utils';
 
@@ -25,6 +28,7 @@ export default {
     SFC,
     JSX,
     Anim,
+    Styl,
   },
   data() {
     return {};
