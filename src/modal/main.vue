@@ -17,7 +17,7 @@ transition(name='smv-modal-fade')
         .smv-content
           component(v-if='comp' :is='comp' ref='content')
           .text(v-else)  {{content}}
-        .smv-footer
+        .smv-footer(v-if='footer')
           .btn.smv-modal-cancel(@click='onCancel' :style='cancelStyl') {{cancelText}}
           .btn.smv-modal-confirm(@click='onModalSubmit' :style='confirmStyl') {{confirmText}}
 </template>
@@ -27,7 +27,7 @@ export default {
   props: {
     theme: {
       type: String,
-      default: '#8b80f9',
+      default: '#a3a7e4',
     },
     animation: {
       type: Object,
@@ -40,6 +40,10 @@ export default {
     title: {
       type: String,
       default: '',
+    },
+    footer: {
+      type: Boolean,
+      default: true,
     },
     confirmText: {
       type: String,
@@ -256,17 +260,10 @@ $darkPrimary: darken($primary-color, 5%);
   }
   .smv-modal-confirm {
     color: white;
-    // &:hover {
-    //   border: 1px solid $darkPrimary;
-    //   background: $darkPrimary;
-    // }
   }
   .smv-modal-cancel {
     background: white;
     margin-right: 16px;
-    // &:hover {
-    //   background: darken(white, 2%);
-    // }
   }
 }
 

@@ -16,8 +16,6 @@ import Split from 'example/components/split/Split.vue';
 import JSX from 'example/md/jsx.md';
 import { waitPointActive } from 'example/utils';
 
-const theme = '#a3a7e4';
-
 export default {
   components: {
     Split,
@@ -30,7 +28,6 @@ export default {
   },
   created() {
     this.modal = Modal({
-      theme,
       title: 'JSX',
       className: 'hallo-world',
       modalStyle: {

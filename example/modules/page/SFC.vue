@@ -17,8 +17,6 @@ import ModalContent from 'example/components/test/ModalContent.vue';
 import SFC from 'example/md/sfc.md';
 import { waitPointActive } from 'example/utils';
 
-const theme = '#a3a7e4';
-
 export default {
   components: {
     Split,
@@ -31,7 +29,6 @@ export default {
   },
   created() {
     this.modal = Modal({
-      theme,
       title: 'SFC',
       className: 'hallo-world',
       modalStyle: {

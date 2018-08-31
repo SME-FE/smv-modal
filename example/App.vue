@@ -21,6 +21,11 @@ export default {
 * {
   box-sizing: border-box;
 }
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 body {
   background: white;
   color: $font-color;

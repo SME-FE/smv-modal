@@ -49,10 +49,10 @@ export default {
         }, SlideDuration);
       }
 
-      ilog.info(
-        `scdir:${scdir}, scrollLen: ${scrollLen}, pageLen: ${pageLen}, (pageLen-step): ${pageLen -
-          step}`
-      );
+      // ilog.info(
+      //   `scdir:${scdir}, scrollLen: ${scrollLen}, pageLen: ${pageLen}, (pageLen-step): ${pageLen -
+      //     step}`
+      // );
     },
   },
 };

@@ -16,7 +16,6 @@ import Split from 'example/components/split/Split.vue';
 import Styl from 'example/md/styl.md';
 import { waitPointActive } from 'example/utils';
 
-const theme = '#a3a7e4';
 // for github page
 const rootPath = process.env.NODE_ENV === 'gh' ? 'smv-modal/' : '';
 
@@ -32,7 +31,6 @@ export default {
   },
   created() {
     this.modal = Modal({
-      theme,
       title: 'Custom Style',
       className: 'hallo-world',
       modalStyle: {
@@ -42,7 +40,7 @@ export default {
       },
       // prettier-ignore
       content: (
-        <h3 style={{ marginLeft: '50%', color: theme }}>
+        <h3 style={{ marginLeft: '50%', color: '#a3a7e4' }}>
           ~~ sakura ~~
         </h3>
       )

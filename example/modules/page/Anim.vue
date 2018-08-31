@@ -22,15 +22,17 @@ import Split from 'example/components/split/Split.vue';
 import Anim from 'example/md/animation.md';
 import { waitPointActive } from 'example/utils';
 
-const theme = '#a3a7e4';
 async function genModal(animationType, context) {
   const h = context.$createElement;
   const modal = Modal({
-    theme,
     title: 'Animation',
     animation: {
       type: animationType,
       duratino: 300,
+    },
+    modalStyle: {
+      width: '400px',
+      height: '200px',
     },
     className: 'hallo-world',
     content: <h2 class="modal-content">{animationType} example</h2>,
