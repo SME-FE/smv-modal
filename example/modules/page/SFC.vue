@@ -4,10 +4,18 @@
     template(slot='left')
       .content
         h1 smv modal
-        p use modal without tear 😂
+        p
+          | support 
+          strong .vue
+          | (Single File Component) file as content 👌 
+        p 
+          strong scroll 
+          | the page to see next example ⏬
         .btn(@click='showModal') click
     template(slot='right')
-      SFC
+      Links(codeLink='https://github.com/SME-FE/smv-modal/blob/master/example/modules/page/SFC.vue')
+      .code
+        SFC
 </template>
 
 <script>

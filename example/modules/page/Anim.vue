@@ -4,7 +4,10 @@
     template(slot='left')
       .content
         h1 smv modal
-        p use modal without tear 😂
+        p with animation ✨✨✨ 
+        p 
+          strong scroll 
+          | the page to see next example ⏬
         .btn-box
           .btn(@click='() => showModal("shutter")') shutter(default)
           .btn(@click='() => showModal("zoom")') zoom
@@ -13,6 +16,7 @@
           .btn(@click='() => showModal("slideLeft")') slideLeft
           .btn(@click='() => showModal("slideRight")') slideRight
     template(slot='right')
+      Links(codeLink='https://github.com/SME-FE/smv-modal/blob/master/example/modules/page/Anim.vue')
       Anim
 </template>
 

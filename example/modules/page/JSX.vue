@@ -4,9 +4,16 @@
     template(slot='left')
       .content
         h1 smv modal
-        p use modal without tear 😂
+        p
+          | support 
+          strong JSX 🌝 
+          | as content
+        p 
+          strong scroll 
+          | the page to see next example ⏬
         .btn(@click='showModal') click
     template(slot='right')
+      Links(codeLink='https://github.com/SME-FE/smv-modal/blob/master/example/modules/page/JSX.vue')
       JSX
 </template>
 

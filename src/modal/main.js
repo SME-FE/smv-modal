@@ -43,7 +43,6 @@ const Modal = opts => {
     instance.setVisible(false);
   };
   instance.destroy = () => {
-    console.log('duration', instance.animation.duration);
     setTimeout(() => {
       if (instance.$content) instance.$content.$destroy();
       instance.$destroy();

@@ -275,7 +275,7 @@ $darkPrimary: darken($primary-color, 5%);
   right: 16px;
 }
 
-// /* only implement fade and shutter by default */
+/* only implement fade and shutter by default */
 @include vmakeFade();
 @include vmakeShutter();
 </style>

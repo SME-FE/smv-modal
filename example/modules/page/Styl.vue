@@ -4,9 +4,10 @@
     template(slot='left')
       .content
         h1 smv modal
-        p use modal without tear 😂
+        p custom the style 🎽
         .btn(@click='showModal') click
     template(slot='right')
+      Links(codeLink='https://github.com/SME-FE/smv-modal/blob/master/example/modules/page/Styl.vue')
       Styl
 </template>
 
