@@ -1,6 +1,6 @@
 {
   "name": "smv-modal",
-  "version": "0.12.2",
+  "version": "0.12.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@types/vue": "^2.0.0",
+    "all-contributors-cli": "^5.4.0",
     "babel-eslint": "^8.0.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^8.0.0",

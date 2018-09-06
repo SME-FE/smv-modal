@@ -1,0 +1,25 @@
+{
+  "projectName": "smv-modal",
+  "projectOwner": "hwen",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "hwen",
+      "name": "hwencc",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6712767?s=460&v=4",
+      "profile": "https://github.com/hwen",
+      "contributions": [
+        "code",
+        "ideas",
+        "example",
+        "doc"
+      ]
+    }
+  ]
+}
