@@ -142,14 +142,11 @@ export default {
       this.visible = value;
     },
     onModalSubmit() {
-      let result;
+      let result = { type: 'submit' };
       if (this.$refs.content) {
-        result = this.$refs.content.form;
+        result.form = this.$refs.content.form;
       }
-      this.$emit('submitModal', {
-        type: 'submit',
-        form: result,
-      });
+      this.$emit('submitModal', result);
       this.visible = false;
     },
     onEnter() {
