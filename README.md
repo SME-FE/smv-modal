@@ -22,22 +22,28 @@ npm i --save smv-modal
 
 ### Basic Usage
 
+#### try it out
+
+[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/rr66qjz3l4)
+
 ```js
 import Modal from 'smv-modal';
 
 const modal = Modal({
   title: 'Welcome',
   content: 'hallo world~'
-})
+});
 
 async showModal() {
   try {
     const resp = await modal.show();
     console.log('resolve', resp);
   } catch(err) {
-    console.log('reject', err)
+    console.log('reject', err);
   }
 }
+
+showModal();
 ```
 
 Please see [Documentation](https://sme-fe.github.io/website-vmodal/) for more usage.
