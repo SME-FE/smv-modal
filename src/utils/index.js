@@ -15,7 +15,6 @@ export const isSFC = content => {
 };
 
 export const templateParser = args => {
-  console.log(args);
   if (args.length <= 1) {
     return { content: args[0] };
   } else if (args.length === 2) {
