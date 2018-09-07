@@ -6,6 +6,7 @@
         h1 smv modal
         p use modal without tear 😂
         .btn(@click='showModal') click
+        .btn(@click='showOther') other
     template(slot='right')
       SFC
 </template>
@@ -14,6 +15,7 @@
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
 import SFC from '../md/sfc.md';
+import ModalContent from 'example/components/test/ModalContent.vue';
 
 const test = '#a3a7e4';
 
@@ -52,18 +54,20 @@ export default {
       content: '这是modal的内容，内容内容。这是modal的内容，内容内容。这是modal的内容，内容内容。',
       // content: ModalContent,
     });
+
+    this.templateModal = Modal`${'title'} ${ModalContent} This one is ignored`;
   },
   methods: {
     async showModal() {
-      const wp = document.querySelector('.await-point');
-      wp.className += ' active';
       try {
         const resp = await this.modal.show();
         ilog.info('resolve', resp);
       } catch (err) {
         ilog.warn('reject', err);
       }
-      wp.className = wp.className.replace('active', '');
+    },
+    async showOther() {
+      const resp = await this.templateModal.show();
     },
   },
 };

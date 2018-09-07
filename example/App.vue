@@ -4,6 +4,12 @@ div
 </template>
 
 <script>
+// import { delItemAction } from './modules/page/index.js';
+
+// setTimeout(() => {
+//   delItemAction();
+// });
+
 export default {
   data() {
     return {

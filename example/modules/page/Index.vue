@@ -18,6 +18,11 @@ import SFC from './SFC.vue';
 import JSX from './JSX.vue';
 import Anim from './Anim.vue';
 import Styl from './Styl.vue';
+// import { showModal } from './index.js';
+
+// setTimeout(() => {
+//   showModal();
+// });
 
 import { parseMarkdown } from 'example/utils';
 

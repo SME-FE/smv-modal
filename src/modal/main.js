@@ -1,9 +1,19 @@
 import Main from './main.vue';
-import { CompFactory, VnodeFactory, getContentType, isSSR } from '../utils';
+import {
+  CompFactory,
+  VnodeFactory,
+  getContentType,
+  isSSR,
+  templateParser,
+  getType,
+} from '../utils';
 
-const Modal = opts => {
+const Modal = (...args) => {
   const ModalConstructor = CompFactory(Main);
   let instance = null;
+  let opts = args[0];
+
+  if (getType(args[0]) !== 'Object') opts = templateParser(args);
   if (opts.animation && !opts.animation.duration) opts.animation.duration = 300;
   const propsData = Object.assign({ content: '' }, opts);
 

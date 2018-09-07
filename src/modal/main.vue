@@ -89,6 +89,7 @@ export default {
       type: Object,
       default: () => ({
         width: '360px',
+        height: '200px',
       }),
     },
   },

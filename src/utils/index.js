@@ -14,6 +14,20 @@ export const isSFC = content => {
   return getType(content.render) === 'Function' || /\.vue/.test(content.__file);
 };
 
+export const templateParser = args => {
+  console.log(args);
+  if (args.length <= 1) {
+    return { content: args[0] };
+  } else if (args.length === 2) {
+    return { content: args[1] };
+  } else {
+    return {
+      title: args[1],
+      content: args[2],
+    };
+  }
+};
+
 export const getContentType = content => {
   if (!content || getType(content) === 'String') return 'string';
   if (isSFC(content)) return 'sfc';
