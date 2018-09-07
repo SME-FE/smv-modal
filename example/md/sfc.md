@@ -2,11 +2,7 @@
 ```js
 import ModalContent from './ModalContent.vue';
 //...
-this.modal = Modal({
-  title: 'SFC',
-  className: 'hallo-world',
-  content: ModalContent,
-});
+this.modal = Modal`${'SFC'} ${ModalContent}`;
 //...
 async showModal() {
   try {

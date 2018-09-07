@@ -36,15 +36,16 @@ export default {
     };
   },
   created() {
-    this.modal = Modal({
-      title: 'SFC',
-      className: 'hallo-world',
-      modalStyle: {
-        width: '400px',
-        height: '240px',
-      },
-      content: ModalContent,
-    });
+    // this.modal = Modal({
+    //   title: 'SFC',
+    //   className: 'hallo-world',
+    //   modalStyle: {
+    //     width: '400px',
+    //     height: '240px',
+    //   },
+    //   content: ModalContent,
+    // });
+    this.modal = Modal`${'SFC'} ${ModalContent}`;
   },
   methods: {
     async showModal() {
@@ -75,8 +76,8 @@ export default {
   background: white;
   overflow: hidden;
 }
-.smv-modal.hallo-world {
-  width: 60%;
+.smv-modal {
+  width: 60% !important;
 }
 </style>
 
