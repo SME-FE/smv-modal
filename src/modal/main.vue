@@ -1,6 +1,6 @@
 <template lang='pug'>
 transition(name='smv-modal-fade')
-  .smv-modal(
+  .smv-modal.override(
     :class='[className]'
     tabindex='-1'
     v-show='visible'

@@ -76,8 +76,8 @@ export default {
   background: white;
   overflow: hidden;
 }
-.smv-modal {
-  width: 60% !important;
+.smv-modal.override {
+  width: 60%;
 }
 </style>
 
