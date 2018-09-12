@@ -41,10 +41,10 @@ const Modal = (...args) => {
     instance.setVisible(true);
     instance.$off();
     return new Promise((resolve, reject) => {
-      instance.$on('submitModal', data => {
+      instance.$on('confirmModal', data => {
         resolve(data);
       });
-      instance.$on('hideModal', data => {
+      instance.$on('cancelModal', data => {
         resolve(data);
       });
     });

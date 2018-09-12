@@ -35,7 +35,7 @@ const modal = Modal({
 });
 
 async showModal() {
-  const result = await modal.show();
+  const result = await modal.show(); // modal.show() return promise
   console.log(result);
 }
 

@@ -15,7 +15,14 @@ transition(name='smv-modal-fade')
           .title {{title}}
           span.smv-modal-close(v-if='closeBtn' @click='onClose')
         .smv-content
-          component(v-if='comp' :is='comp' ref='content')
+          component(
+            v-if='comp'
+            :is='comp'
+            ref='content'
+            @confirmModal='emitConfirm'
+            @cancelModal='emitCancel'
+            @setCloseable='setCloseable'
+          )
           .text(v-else)  {{content}}
         .smv-footer(v-if='footer')
           .btn.smv-modal-cancel(@click='onCancel' :style='cancelStyl') {{cancelText}}
@@ -97,6 +104,7 @@ export default {
     return {
       visible: false,
       $content: null,
+      closeable: true,
     };
   },
   mounted() {
@@ -142,51 +150,57 @@ export default {
     setVisible(value) {
       this.visible = value;
     },
-    onModalSubmit(isEnter) {
-      let result = { type: 'confirm', trigger: isEnter ? 'enter' : 'confirm' };
-      if (this.$refs.content) {
-        result.form = this.$refs.content.form;
-      }
-      this.$emit('submitModal', result);
+    emitCancel(data) {
+      if (!this.closeable) return;
+      this.$emit('cancelModal', data);
       this.visible = false;
     },
+    emitConfirm(data) {
+      if (!this.closeable) return;
+      this.$emit('confirmModal', data);
+      this.visible = false;
+    },
+    setCloseable(closeable) {
+      this.closeable = closeable;
+    },
+    onModalSubmit(e) {
+      let result = { type: 'confirm', trigger: !e ? 'enter' : 'confirm' };
+      if (this.$refs.content) result.form = this.$refs.content.form;
+      this.emitConfirm(result);
+    },
     onEnter() {
-      if (this.confirmOnEnter) this.onModalSubmit(this.confirmOnEnter);
+      if (this.confirmOnEnter) this.onModalSubmit();
     },
     onCancel() {
       if (this.visible) {
-        this.$emit('hideModal', {
+        this.emitCancel({
           type: 'cancel',
           trigger: 'cancel',
         });
-        this.visible = false;
       }
     },
     onClose() {
       if (this.visible) {
-        this.$emit('hideModal', {
+        this.emitCancel({
           type: 'cancel',
           trigger: 'close',
         });
-        this.visible = false;
       }
     },
     onEsc() {
       if (this.visible && this.closeOnEsc) {
-        this.$emit('hideModal', {
+        this.emitCancel({
           type: 'cancel',
           trigger: 'esc',
         });
-        this.visible = false;
       }
     },
     onClickMask() {
       if (this.maskClosable) {
-        this.$emit('hideModal', {
+        this.emitCancel({
           type: 'cancel',
           trigger: 'mask',
         });
-        this.visible = false;
       }
     },
   },
