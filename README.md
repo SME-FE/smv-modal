@@ -35,12 +35,8 @@ const modal = Modal({
 });
 
 async showModal() {
-  try {
-    const resp = await modal.show();
-    console.log('resolve', resp);
-  } catch(err) {
-    console.log('reject', err);
-  }
+  const result = await modal.show();
+  console.log(result);
 }
 
 showModal();
