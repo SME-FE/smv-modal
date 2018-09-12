@@ -21,7 +21,6 @@ import './styles/markdown.scss';
 
 window.ilog = logSome(process.env.NODE_ENV);
 Vue.use(VueRouter);
-Vue.use(Modal);
 Vue.component('Links', Links);
 
 const router = new VueRouter({

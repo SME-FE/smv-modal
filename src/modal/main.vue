@@ -165,7 +165,8 @@ export default {
     },
     onModalSubmit(e) {
       let result = { type: 'confirm', trigger: !e ? 'enter' : 'confirm' };
-      if (this.$refs.content) result.form = this.$refs.content.form;
+      const $content = this.$refs.content;
+      if ($content && $content.form) result.form = $content.form;
       this.emitConfirm(result);
     },
     onEnter() {
