@@ -23,7 +23,7 @@ import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
 import ModalContent from 'example/components/test/ModalContent.vue';
 import SFC from 'example/md/sfc.md';
-import { waitPointActive } from 'example/utils';
+import { waitPointActive, log } from 'example/utils';
 
 export default {
   components: {
@@ -50,12 +50,8 @@ export default {
   methods: {
     async showModal() {
       waitPointActive(true, 'code-1');
-      try {
-        const resp = await this.modal.show();
-        ilog.info('resolve', resp);
-      } catch (err) {
-        ilog.warn('reject', err);
-      }
+      const resp = await this.modal.show();
+      log(resp);
       waitPointActive(false, 'code-1');
     },
   },

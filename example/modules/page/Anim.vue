@@ -24,7 +24,7 @@
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
 import Anim from 'example/md/animation.md';
-import { waitPointActive } from 'example/utils';
+import { waitPointActive, log } from 'example/utils';
 
 async function genModal(animationType, context) {
   const h = context.$createElement;
@@ -42,12 +42,8 @@ async function genModal(animationType, context) {
     content: <h2 class="modal-content">{animationType} example</h2>,
   });
 
-  try {
-    const resp = await modal.show();
-    ilog.info('resolve', resp);
-  } catch (err) {
-    ilog.warn('reject', err);
-  }
+  const resp = await modal.show();
+  log(resp);
 
   modal.destroy();
 }

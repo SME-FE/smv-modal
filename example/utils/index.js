@@ -43,3 +43,8 @@ export function waitPointActive(isActive, className) {
     wp.className = wp.className.replace('active', '');
   }
 }
+
+export function log(result) {
+  const type = result.type === 'confirm' ? 'info' : 'warn';
+  ilog[type](result.type, result);
+}

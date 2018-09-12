@@ -45,7 +45,7 @@ const Modal = (...args) => {
         resolve(data);
       });
       instance.$on('hideModal', data => {
-        reject(data);
+        resolve(data);
       });
     });
   };

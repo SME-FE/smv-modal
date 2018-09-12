@@ -5,14 +5,10 @@ import ModalContent from './ModalContent.vue';
 this.modal = Modal`${'SFC'} ${ModalContent}`;
 //...
 async showModal() {
-  try {
-    :::imark
-    const resp = await this.modal.show();
-    :::
-    ilog.info('resolve', resp);
-  } catch (err) {
-    ilog.warn('reject', err);
-  }
+  :::imark
+  const resp = await this.modal.show();
+  :::
+  ilog.info(resp.type, resp);
 },
 ```
 #### ModalContent.vue

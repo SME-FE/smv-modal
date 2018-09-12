@@ -15,10 +15,6 @@ const ConfirmDelModal = Modal({
 const mockRequest = () => {};
 
 export const delItemAction = async id => {
-  try {
-    const resp = await ConfirmDelModal.show();
-    mockRequest(`/del/${id}`);
-  } catch (err) {
-    console.log(err);
-  }
+  const resp = await ConfirmDelModal.show();
+  mockRequest(`/del/${id}`);
 };

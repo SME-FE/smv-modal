@@ -13,14 +13,10 @@ methods: {
       content: <h2 class="modal-content">{animationType} example</h2>,
     });
 
-    try {
-      :::imark
-      const resp = await this.modal.show();
-      :::
-      ilog.info('resolve', resp);
-    } catch (err) {
-      ilog.warn('reject', err);
-    }
+    :::imark
+    const resp = await this.modal.show();
+    :::
+    ilog.info(resp.type, resp);
 
     modal.destroy(); // destroy it...
   }

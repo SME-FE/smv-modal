@@ -142,8 +142,8 @@ export default {
     setVisible(value) {
       this.visible = value;
     },
-    onModalSubmit() {
-      let result = { type: 'submit' };
+    onModalSubmit(isEnter) {
+      let result = { type: 'confirm', trigger: isEnter ? 'enter' : 'confirm' };
       if (this.$refs.content) {
         result.form = this.$refs.content.form;
       }
@@ -151,12 +151,12 @@ export default {
       this.visible = false;
     },
     onEnter() {
-      if (this.confirmOnEnter) this.onModalSubmit();
+      if (this.confirmOnEnter) this.onModalSubmit(this.confirmOnEnter);
     },
     onCancel() {
       if (this.visible) {
         this.$emit('hideModal', {
-          type: 'hide',
+          type: 'cancel',
           trigger: 'cancel',
         });
         this.visible = false;
@@ -165,7 +165,7 @@ export default {
     onClose() {
       if (this.visible) {
         this.$emit('hideModal', {
-          type: 'hide',
+          type: 'cancel',
           trigger: 'close',
         });
         this.visible = false;
@@ -174,7 +174,7 @@ export default {
     onEsc() {
       if (this.visible && this.closeOnEsc) {
         this.$emit('hideModal', {
-          type: 'hide',
+          type: 'cancel',
           trigger: 'esc',
         });
         this.visible = false;
@@ -183,7 +183,7 @@ export default {
     onClickMask() {
       if (this.maskClosable) {
         this.$emit('hideModal', {
-          type: 'hide',
+          type: 'cancel',
           trigger: 'mask',
         });
         this.visible = false;

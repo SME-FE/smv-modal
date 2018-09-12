@@ -16,6 +16,7 @@ import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
 import SFC from '../md/sfc.md';
 import ModalContent from 'example/components/test/ModalContent.vue';
+import { waitPointActive, log } from 'example/utils';
 
 const test = '#a3a7e4';
 
@@ -59,12 +60,8 @@ export default {
   },
   methods: {
     async showModal() {
-      try {
-        const resp = await this.modal.show();
-        ilog.info('resolve', resp);
-      } catch (err) {
-        ilog.warn('reject', err);
-      }
+      const resp = await this.modal.show();
+      log(resp);
     },
     async showOther() {
       const resp = await this.templateModal.show();

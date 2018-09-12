@@ -8,13 +8,9 @@ this.modal = Modal({
 });
 //...
 async showModal() {
-  try {
-    :::imark
-    const resp = await this.modal.show();
-    :::
-    ilog.info('resolve', resp);
-  } catch (err) {
-    ilog.warn('reject', err);
-  }
+  :::imark
+  const resp = await this.modal.show();
+  :::
+  ilog.info(resp.type, resp);
 },
 ```

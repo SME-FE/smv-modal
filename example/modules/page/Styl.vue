@@ -15,7 +15,7 @@
 import Modal from '@/index.js';
 import Split from 'example/components/split/Split.vue';
 import Styl from 'example/md/styl.md';
-import { waitPointActive } from 'example/utils';
+import { waitPointActive, log } from 'example/utils';
 
 // for github page
 const rootPath = process.env.NODE_ENV === 'gh' ? 'smv-modal/' : '';
@@ -50,12 +50,8 @@ export default {
   methods: {
     async showModal() {
       waitPointActive(true, 'code-4');
-      try {
-        const resp = await this.modal.show();
-        ilog.info('resolve', resp);
-      } catch (err) {
-        ilog.warn('reject', err);
-      }
+      const resp = await this.modal.show();
+      log(resp);
       waitPointActive(false, 'code-4');
     },
   },
