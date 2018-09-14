@@ -42,7 +42,13 @@ async showModal() {
 showModal();
 ```
 
-Please see [Documentation](https://sme-fe.github.io/website-vmodal/) for more usage.
+- or you can write in shorthand
+
+```js
+const modal = Modal`I'am content`;
+```
+
+Please see [Documentation](https://sme-fe.github.io/website-vmodal/) for detail.
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
