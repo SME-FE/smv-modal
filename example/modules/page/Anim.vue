@@ -61,9 +61,7 @@ export default {
   created() {},
   methods: {
     async showModal(type) {
-      waitPointActive(true, 'code-3');
       await genModal(type, this);
-      waitPointActive(false, 'code-3');
     },
   },
 };

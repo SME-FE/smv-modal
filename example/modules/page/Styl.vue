@@ -49,10 +49,8 @@ export default {
   },
   methods: {
     async showModal() {
-      waitPointActive(true, 'code-4');
       const resp = await this.modal.show();
       log(resp);
-      waitPointActive(false, 'code-4');
     },
   },
 };
